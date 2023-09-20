@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 import axios from 'axios'
-import { CONSTANTS, renderError } from '../src/utils.js'
+import { CONSTANTS, renderError } from '../../src/utils.js'
 
 
 const aesEncrypt = (secKey, text) => {
