@@ -86,7 +86,7 @@ export default async (request, response) => {
         Math.min(Number(cache), CONSTANTS.CACHE_ONE_DAY)
       )}`
     )
-    response.setHeader('content-type', 'image/svg+xml')
+    response.setHeader('content-type', 'application/json')
     response.statusCode = 200
     response.send(JSON.stringify(templateParams))
   } catch (err) {
