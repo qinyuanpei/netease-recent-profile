@@ -86,6 +86,7 @@ export default async (request, response) => {
         Math.min(Number(cache), CONSTANTS.CACHE_ONE_DAY)
       )}`
     )
+    response.setHeader('Access-Control-Allow-Origin', '*')
     response.setHeader('content-type', 'application/json')
     response.statusCode = 200
     response.send(JSON.stringify(templateParams))
