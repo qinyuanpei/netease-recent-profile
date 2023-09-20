@@ -73,6 +73,7 @@ export default async (request, response) => {
           name: song.name,
           artist: song.ar.map(({ name }) => name).join('/'),
           cover: covers[i],
+          cover_url: `${song.al.picUrl}${size !== '800' ? `?param=${size}x${size}` : ''}`,
           url: `https://music.163.com/#/song?id=${song.id}`,
           percent: show_percent === '1' ? score / 100 : 0,
         }
