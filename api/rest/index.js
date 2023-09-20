@@ -87,7 +87,8 @@ export default async (request, response) => {
       )}`
     )
     response.setHeader('Access-Control-Allow-Origin', '*')
-    response.setHeader("Access-Control-Allow-Methods", 'DELETE,PUT,POST,GET,OPTIONS')
+    response.setHeader('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS')
+    response.setHeader('Access-Control-Allow-Headers', '*')
     response.setHeader('content-type', 'application/json')
     response.statusCode = 200
     response.send(JSON.stringify(templateParams))
