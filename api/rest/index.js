@@ -14,6 +14,17 @@ const aesRsaEncrypt = (text) => ({
     '84ca47bca10bad09a6b04c5c927ef077d9b9f1e37098aa3eac6ea70eb59df0aa28b691b7e75e4f1f9831754919ea784c8f74fbfadf2898b0be17849fd656060162857830e241aba44991601f137624094c114ea8d17bce815b0cd4e5b8e2fbaba978c6d1d14dc3d1faf852bdd28818031ccdaaa13a6018e1024e2aae98844210',
 })
 
+const encryptedParams = {
+  allData: {
+    params: 'j0AUmZyQsNnPXaxuE/2IalhILiV97UOCIGaQ9fBHTFOT6E0CvWG5f7MUehhnZdrZAdAwCpbQ/I/QWXZOMhyyoJ3GikfWeOiTWeLyMef5eOnVJNze4W+OVtHfRMc6fh3wF5XKyta1zEXXMItoLMYK/Ja6E0+FVBNd300Wcg1HhvhHvI3NC3M5nXWL960AbRxA',
+    encSecKey: 'a09029b6c5fe219dce495ff4e4190e1658df9e846514cc906914a4da3badabb5c7deca77a8ab1aefca8932b4c8cb774c28c8009872f2fc9574d3175e7e0210e497709f8e608ea528bb8a8ecc4a53b4f6e977e4e5ef1bf529cdd20448c8a6dbf4bace0be80c0a30036698f220e53a16dba6165bad557e5046b0eb82a711e1ad92'
+  },
+  weekData: {
+    params: 'NsP3dKdRL3VMcx0vicrY+jOAPFyiW6w1JqOBvIT2qSEKTJ7J2s90fnnRmJgfrsm0xfwRPYr0L9LYAJx2GPyomyfMh2S+gz61zyAbNx+f8ICsKH9waAvYIZOSGZRpX9NurD1vpy6PJVCH1bH1ZM/8jZI335cN8zgFLqxRYafaeikSwn/LMfr4uOSkV2PGvY/O',
+    encSecKey: 'abbdb4d9862b43599dff94bdfa06e01c1568c9d99edb2357b34828b77d7a2902b7b522f7b1c801ce940ced88a99d53702f4ce64504187f58c27384e12ea64f0bde20da6d942da4c6961eac26a678769e7615f09ffb204e5f4f8d99c81d9b81a9fe1792a25e63843ca650dabe88145dd5de320d32fb44b4d1e7aedbc6f46fef03'
+  }
+};
+
 export default async (request, response) => {
   const {
     id,
@@ -27,14 +38,11 @@ export default async (request, response) => {
   } = request.query
 
   try {
+    const payload = encryptedParams[Number(type) === 1 ? 'weekData' : 'allData']
     const { data } = await axios.post(
       'https://music.163.com/weapi/v1/play/record?csrf_token=',
-      aesRsaEncrypt(
-        JSON.stringify({
-          uid: id,
-          type,
-        })
-      ),
+      payload
+      ,
       {
         headers: {
           Accept: '*/*',
