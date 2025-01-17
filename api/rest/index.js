@@ -39,6 +39,7 @@ export default async (request, response) => {
 
   try {
     const payload = encryptedParams[Number(type) === 1 ? 'weekData' : 'allData']
+    console.log(payload)
     const { data } = await axios.post(
       'https://music.163.com/weapi/v1/play/record?csrf_token=',
       payload
