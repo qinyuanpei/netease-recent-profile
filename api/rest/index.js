@@ -61,6 +61,7 @@ export default async (request, response) => {
       }
     )
 
+    console.log(payload)
     const songs = data[Number(type) === 1 ? 'weekData' : 'allData'].slice(0, Number(number))
 
     // const buffers = await Promise.all(
